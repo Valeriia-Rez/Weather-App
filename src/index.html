@@ -1,15 +1,54 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <title>Weather App</title>
 </head>
 
 <body>
-    <h1>hello</h1>
 
+    <div class="container">
+        <main class="weather row">
+            <div class="weather__info col-md-7 mt-5 p-5 mx-auto bg-white rounded">
+                <div class="text-center pb-5">
+                    <h2>Weather App</h2>
+                </div>
+                <div data-selector="name"></div>
+                <div data-selector="country"></div>
+                <div data-selector="time"></div>
+                <div>
+                    <div data-selector="temperature_c"></div>
+                    <div data-selector="temperature_f"></div>
+
+                </div>
+                <div>
+                    <div data-selector="feelslike_c"></div>
+                    <div data-selector="feelslike_f"></div>
+                </div>
+                <div data-selector="description"></div>
+                <div data-selector="icon"></div>
+                <div data-selector="pressure"></div>
+                <div data-selector="humidity"></div>
+                <div data-selector="wind"></div>
+
+                <div class="input-group-append col-md-7 mx-auto pt-5">
+                    <input type="text" class="form-control" placeholder="Your location">
+                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+                </div>
+
+            </div>
+        </main>
+
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 
 </html>

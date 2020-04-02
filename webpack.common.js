@@ -1,9 +1,9 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
+const CopyPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-
+const ImageminPlugin = require('imagemin-webpack-plugin').default
 const devMode = process.env.NODE_ENV !== 'production';
 module.exports = {
     entry: './src/js/index.js',
@@ -53,7 +53,15 @@ module.exports = {
                     'sass-loader',
                 ],
             },
-
+            {
+                test: /\.(png|jpe?g|gif|svg)$/,
+                use: [{
+                    loader: "file-loader",
+                    options: {
+                        outputPath: 'images'
+                    }
+                }]
+            }
         ]
     },
     optimization: {
@@ -68,6 +76,12 @@ module.exports = {
             filename: 'index.html',
             template: './src/index.html'
         }),
-
+        new CopyPlugin([
+            { from: './src/img', to: 'img' },
+        ]),
+        new ImageminPlugin({
+            disable: devMode,
+            test: /\.(jpe?g|png|gif|svg)$/i
+        })
     ],
 }
