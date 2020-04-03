@@ -15,4 +15,5 @@ export default class Weather {
     changeLocation(city) {
         this.city = city;
     }
+
 }

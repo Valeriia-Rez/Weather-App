@@ -12,6 +12,7 @@ export default class viewWeather {
         this.wind = document.querySelector("[data-selector='wind']");
     }
     displayResults(result) {
+
         this.nameCity.textContent = `${result.location.name},`;
         this.country.textContent = result.location.country;
         this.time.textContent = result.location.localtime;
@@ -22,5 +23,10 @@ export default class viewWeather {
         this.pressure.innerHTML = `<strong>Pressure:</strong> ${result.current.pressure_mb} hPa`;
         this.humidity.innerHTML = `<strong>Humidity:</strong> ${result.current.humidity}%`;
         this.wind.innerHTML = `<strong>Wind:</strong> ${result.current.wind_mph} m/s`;
+    }
+    changeBackground(img) {
+        if (this.temperature_c < 7) {
+
+        }
     }
 }
