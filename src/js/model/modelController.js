@@ -8,16 +8,17 @@ export default class Weather {
 
     async getWeather() {
         try {
-            const res = await axios(`http://api.weatherapi.com/v1/current.json?key=${this.key}&q=${this.city}`);
+            const res = await axios(`https://api.weatherapi.com/v1/current.json?key=${this.key}&q=${this.city}`);
             this.result = res.data;
             console.log(this.result);
         } catch (error) {
-            alert("Enter the correct city name...");
+            alert("Error...");
         }
     }
 
     changeLocation(city) {
         this.city = city;
     }
+
 
 }
