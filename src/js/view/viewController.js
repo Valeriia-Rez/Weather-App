@@ -12,21 +12,15 @@ export default class viewWeather {
         this.wind = document.querySelector("[data-selector='wind']");
     }
     displayResults(result) {
-
         this.nameCity.textContent = `${result.location.name},`;
         this.country.textContent = result.location.country;
         this.time.textContent = result.location.localtime;
         this.temperature_c.innerHTML = `<strong>${result.current.temp_c} &#176;C</strong>`;
         this.feelslike_c.innerHTML = `<strong>Feels Like:</strong> ${result.current.feelslike_c} &#176;C`;
         this.description.innerHTML = `<strong>${result.current.condition.text}</strong>`;
-        this.icon.setAttribute("src", result.current.condition.icon);
+        this.icon.setAttribute("src", `${result.current.condition.icon}`);
         this.pressure.innerHTML = `<strong>Pressure:</strong> ${result.current.pressure_mb} hPa`;
         this.humidity.innerHTML = `<strong>Humidity:</strong> ${result.current.humidity}%`;
-        this.wind.innerHTML = `<strong>Wind:</strong> ${result.current.wind_mph} m/s`;
-    }
-    changeBackground(img) {
-        if (this.temperature_c < 7) {
-
-        }
+        this.wind.innerHTML = `<strong>Wind:</strong> ${result.current.wind_kph} m/s`;
     }
 }

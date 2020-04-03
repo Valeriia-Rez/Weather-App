@@ -9,16 +9,22 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
+span {
+    @media screen and (min-width: 768px) {
+        font-size: 1.5rem;
+    }
+}
+
 .weather {
-    height: 900px;
+    height: 790px;
     &__heading {
         @media screen and(min-width: 768px) {
             font-size: 3.5rem;
         }
     }
     &__info {
-        height: 600px;
-        opacity: 0.9;
+        height: 560px;
+        opacity: 0.8;
     }
 }
 
@@ -27,11 +33,5 @@ body {
     font-weight: bold;
     @media screen and(min-width: 768px) {
         font-size: 2rem;
-    }
-}
-
-p {
-    @media screen and(min-width: 768px) {
-        font-size: 1.5rem;
     }
 }

@@ -14,31 +14,27 @@
 
     <div class="container">
         <main class="weather row px-2 pt-5" data-selector="weather">
-            <div class="weather__info col-sm-12 col-md-10 mt-5 p-5 mx-auto bg-white rounded">
-                <h1 class="weather__heading text-center"><strong>Weather App</strong></h1>
-                <div class="pt-3">
-                    <div class="location text-center pb-3">
-                        <span data-selector="name"></span>
-                        <span data-selector="country"></span>
-                    </div>
-                    <div class="d-flex flex-column flex-md-row justify-content-between p-md-3">
-                        <div>
-                            <h2 class="text-center pb-3" data-selector="temperature_c"></h2>
-                            <div class="d-flex flex-row">
-                                <p data-selector="description"></p>
-                                <p data-selector="icon"></p>
-                            </div>
-                            <p data-selector="feelslike_c"></p>
-                        </div>
-                        <div class="d-flex flex-column">
-                            <p data-selector="pressure"></p>
-                            <p data-selector="humidity"></p>
-                            <p data-selector="wind"></p>
-                        </div>
-                    </div>
-                    <p class="text-center" data-selector="time"></p>
+            <div class="weather__info col-sm-12 col-md-10 col-lg-7 mt-5 p-3 mx-auto bg-white rounded text-center">
+                <h1 class="weather__heading"><strong>Weather App</strong></h1>
+                <div class="location pb-3">
+                    <span data-selector="name"></span>
+                    <span data-selector="country"></span>
+                    <h2 class="text-center pt-2" data-selector="temperature_c"></h2>
+                    <span data-selector="description"></span>
+                    <span><img class="pl-4" data-selector="icon"></span>
                 </div>
-                <div class="input-group-append col-md-7 mx-auto pt-3">
+                <div class="d-flex flex-row justify-content-between justify-content-md-around px-3 py-2">
+                    <div class="d-flex flex-column">
+                        <span class="pb-3" data-selector="feelslike_c"></span>
+                        <span data-selector="pressure"></span>
+                    </div>
+                    <div class="d-flex flex-column">
+                        <span class="pb-3" data-selector="humidity"></span>
+                        <span data-selector="wind"></span>
+                    </div>
+                </div>
+                <div class="text-center py-4" data-selector="time"></div>
+                <div class="input-group-append col-md-7 mx-auto">
                     <input type="text" class="form-control" data-selector="location" placeholder="Your location">
                     <button class="btn btn-dark input-group-text" data-selector="button"><i class="fas fa-search"></i></button>
                 </div>
