@@ -31,23 +31,32 @@ export default class viewWeather {
         this.feelslike.innerHTML = `<strong>Feels Like:</strong> ${result.current.feelslike_f} &#176;F`;
     }
 
+
     displayBackgroundImage(result) {
         if (result.current.temp_c < 0) {
-            const div = document.querySelector("[data-selector='weather']");
+            const div = document.querySelector("body");
             div.style.background = "url('./img/winter.jpg')";
             div.style.backgroundSize = "cover";
+            div.style.backgroundPosition = "top";
+            div.style.backgroundRepeat = "no-repeat";
         } else if (result.current.temp_c > 0 && result.current.temp_c < 10) {
-            const div = document.querySelector("[data-selector='weather']");
+            const div = document.querySelector("body");
             div.style.background = "url('./img/background.jpg')";
             div.style.backgroundSize = "cover";
+            div.style.backgroundPosition = "top";
+            div.style.backgroundRepeat = "no-repeat";
         } else if (result.current.temp_c > 10 && result.current.temp_c < 20) {
-            const div = document.querySelector("[data-selector='weather']");
+            const div = document.querySelector("body");
             div.style.background = "url('./img/spring.jpg')";
             div.style.backgroundSize = "cover";
+            div.style.backgroundPosition = "top";
+            div.style.backgroundRepeat = "no-repeat";
         } else if (result.current.temp_c > 20) {
-            const div = document.querySelector("[data-selector='weather']");
+            const div = document.querySelector("body");
             div.style.background = "url('./img/summer.jpg')";
             div.style.backgroundSize = "cover";
+            div.style.backgroundPosition = "top";
+            div.style.backgroundRepeat = "no-repeat";
         }
     }
 }
