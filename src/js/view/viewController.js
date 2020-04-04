@@ -12,7 +12,8 @@ export default class viewWeather {
         this.humidity = document.querySelector("[data-selector='humidity']");
         this.wind = document.querySelector("[data-selector='wind']");
     }
-    displayResults(result) {
+
+    displayWeather(result) {
         this.nameCity.textContent = `${result.location.name},`;
         this.country.textContent = result.location.country;
         this.time.textContent = result.location.localtime;
@@ -49,6 +50,4 @@ export default class viewWeather {
             div.style.backgroundSize = "cover";
         }
     }
-
-
 }
