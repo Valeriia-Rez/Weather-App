@@ -30,5 +30,25 @@ export default class viewWeather {
         this.feelslike.innerHTML = `<strong>Feels Like:</strong> ${result.current.feelslike_f} &#176;F`;
     }
 
+    displayBackgroundImage(result) {
+        if (result.current.temp_c < 0) {
+            const div = document.querySelector("[data-selector='weather']");
+            div.style.background = "url('./img/winter.jpg')";
+            div.style.backgroundSize = "cover";
+        } else if (result.current.temp_c > 0 && result.current.temp_c < 10) {
+            const div = document.querySelector("[data-selector='weather']");
+            div.style.background = "url('./img/background.jpg')";
+            div.style.backgroundSize = "cover";
+        } else if (result.current.temp_c > 10 && result.current.temp_c < 20) {
+            const div = document.querySelector("[data-selector='weather']");
+            div.style.background = "url('./img/spring.jpg')";
+            div.style.backgroundSize = "cover";
+        } else if (result.current.temp_c > 20) {
+            const div = document.querySelector("[data-selector='weather']");
+            div.style.background = "url('./img/summer.jpg')";
+            div.style.backgroundSize = "cover";
+        }
+    }
+
 
 }

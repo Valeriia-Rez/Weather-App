@@ -11,6 +11,7 @@ export default class Weather {
             const res = await axios(`https://api.weatherapi.com/v1/current.json?key=${this.key}&q=${this.city}`);
             this.result = res.data;
             console.log(this.result);
+
         } catch (error) {
             alert("Error...");
         }
@@ -20,5 +21,22 @@ export default class Weather {
         this.city = city;
     }
 
+    error() {
+        console.log('Unable to retrieve your location');
+    }
+    success(position) {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+        console.log(latitude, longitude);
+
+    }
+    checkGeo() {
+        if ('geolocation' in navigator) {
+            this.navigator = navigator;
+            this.navigator.geolocation.getCurrentPosition(this.success, this.error);
+        } else {
+            console.log("Geolocation is not supported by your browser");
+        }
+    }
 
 }

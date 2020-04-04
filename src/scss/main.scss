@@ -18,7 +18,7 @@ span {
 .weather {
     height: 790px;
     &__info {
-        height: 560px;
+        height: 630px;
         opacity: 0.8;
     }
     &__heading {
@@ -29,10 +29,12 @@ span {
     &__location {
         font-size: 1.5rem;
         font-weight: bold;
-        cursor: pointer;
         @media screen and(min-width: 768px) {
             font-size: 2rem;
         }
+    }
+    &__unit {
+        cursor: pointer;
     }
 }
 
