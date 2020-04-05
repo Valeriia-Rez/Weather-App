@@ -11,12 +11,15 @@ export default class viewWeather {
         this.pressure = document.querySelector("[data-selector='pressure']");
         this.humidity = document.querySelector("[data-selector='humidity']");
         this.wind = document.querySelector("[data-selector='wind']");
+
     }
 
+
+
     displayWeather(result) {
-        this.nameCity.textContent = `${result.location.name},`;
-        this.country.textContent = result.location.country;
-        this.time.textContent = result.location.localtime;
+        this.nameCity.innerHTML = `${result.location.name},`;
+        this.country.innerHTML = result.location.country;
+        this.time.innerHTML = `<strong>${result.location.localtime}</strong>`;
         this.temperature.innerHTML = `<strong>${result.current.temp_c}</strong>`;
         this.feelslike.innerHTML = `<strong>Feels Like:</strong> ${result.current.feelslike_c} &#176;C`;
         this.description.innerHTML = `<strong>${result.current.condition.text}</strong>`;
@@ -59,4 +62,6 @@ export default class viewWeather {
             div.style.backgroundRepeat = "no-repeat";
         }
     }
+
+
 }

@@ -1,4 +1,7 @@
 import axios from 'axios';
+import Weather from "./getWeatherByCityName";
+
+const weather = new Weather();
 
 export default class geoLocator {
     constructor(latitude, longitude) {
@@ -13,7 +16,7 @@ export default class geoLocator {
             this.result = res.data;
             console.log(this.result);
         } catch (error) {
-            alert("Error...");
+            weather.alertMessage("Error", "alert-message");
         }
     }
 }
