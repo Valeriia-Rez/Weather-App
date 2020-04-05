@@ -1,13 +1,11 @@
 import axios from 'axios';
-import Weather from "./getWeatherByCityName";
 
-const weather = new Weather();
-
-export default class geoLocator {
+export default class GeoLocator {
     constructor(latitude, longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
         this.key = "858a0ada55c44814a02193154202901";
+        this.error = null;
     }
 
     async getWeatherByLocation() {
@@ -15,8 +13,9 @@ export default class geoLocator {
             const res = await axios(`https://api.weatherapi.com/v1/current.json?key=${this.key}&q=${this.latitude}&q=${this.longitude}`);
             this.result = res.data;
             console.log(this.result);
+            this.error = false;
         } catch (error) {
-            weather.alertMessage("Error", "alert-message");
+            this.error = true;
         }
     }
 }

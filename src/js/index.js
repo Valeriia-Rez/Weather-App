@@ -1,38 +1,40 @@
 import "../scss/main.scss";
 import "regenerator-runtime/runtime";
 import Weather from "./model/getWeatherByCityName";
-import geoLocator from "./model/getWeatherByLocation";
-import requestedCity from "./model/getRequestedCity";
-import viewWeather from "./view/viewController";
+import GeoLocator from "./model/getWeatherByLocation";
+import Request from "./model/getRequestedCity";
+import ViewWeather from "./view/viewController";
 
-const weather = new Weather("Poltava");
-const view = new viewWeather();
-/*const requestCity = new requestedCity();
-requestCity.getRequestedCity();*/
+const weather = new Weather();
+const view = new ViewWeather();
+const request = new Request();
+
+/*const getCity = async() => {
+    view.getResponseCity(weather.result);
+    await request.getRequestedCity(view.latitude, view.longitude, view.timeStamp);
+    console.log(view.latitude, view.longitude, view.timeStamp, "lat");
+}*/
 
 
-const displayResults = () => {
-    const weatherLocation = document.querySelector("[data-selector='weather-location']");
-    const weatherResults = document.querySelector("[data-selector='weather-results']");
-    if (weatherLocation.classList.contains("d-none") && weatherResults.classList.contains("d-none")) {
-        weatherLocation.classList.remove("d-none");
-        weatherResults.classList.remove("d-none");
-        weatherResults.classList.add("d-flex");
-    }
-}
 
-const error = () => {
-    weather.alertMessage("Unable to retrieve your location", "alert-message");
-}
+
+
+const error = () => view.alertMessage("Unable to retrieve your location", "alert-message");
 
 const success = async(position) => {
     const latitude = position.coords.latitude;
     const longitude = position.coords.longitude;
-    const geolocator = new geoLocator(latitude, longitude);
+    const geolocator = new GeoLocator(latitude, longitude);
     await geolocator.getWeatherByLocation();
-    displayResults();
-    view.displayWeather(geolocator.result);
+    if (geolocator.error) {
+        view.alertMessage("Error", "alert-message");
+    } else {
+        view.displayResults(geolocator.result);
+        document.querySelector("[data-selector='fahrenheit']").addEventListener("click", () => changeWeatherUnits(geolocator.result, "location"));
+        document.querySelector("[data-selector='celcius']").addEventListener("click", () => changeWeatherUnits(geolocator.result, "location"));
+    }
 }
+
 const getWeatherByMyLocation = () => {
     if ('geolocation' in navigator) {
         navigator.geolocation.getCurrentPosition(success, error);
@@ -41,29 +43,49 @@ const getWeatherByMyLocation = () => {
     }
 }
 
-const changeWeatherUnits = () => {
-    view.displayFahrenheit(weather.result);
-    document.querySelector("[data-selector='celcius']").addEventListener("click", renderWeatherApp);
+const changeWeatherUnits = (result, type) => {
+    view.displayFahrenheit(result);
+    if (type === "location") {
+        document.querySelector("[data-selector='celcius']").addEventListener("click", getWeatherByMyLocation);
+        document.querySelector("[data-selector='fahrenheit']").addEventListener("click", getWeatherByMyLocation);
+    } else {
+        document.querySelector("[data-selector='celcius']").addEventListener("click", changeWeatherByCityName);
+        document.querySelector("[data-selector='fahrenheit']").addEventListener("click", changeWeatherByCityName);
+    }
+
 }
 
-const changeWeatherByCityName = () => {
+const changeWeatherByCityName = async() => {
     let input = document.querySelector("[data-selector='input']");
-    if (input.value) {
-        weather.changeCityName(input.value);
-        displayResults();
-        renderWeatherApp();
-        input.value = "";
+    if (!weather.city || input.value) {
+        await weather.getWeatherByCityName(input.value);
+        console.log(weather);
+        if (weather.error) {
+            console.log(weather.error);
+            view.alertMessage("Please,enter the correct city", "alert-message");
+            input.value = "";
+            weather.clearCity();
+        } else {
+            view.displayResults(weather.result);
+            document.querySelector("[data-selector='fahrenheit']").addEventListener("click", () => changeWeatherUnits(weather.result, "city"));
+            document.querySelector("[data-selector='celcius']").addEventListener("click", () => changeWeatherUnits(weather.result, "city"));
+            input.value = "";
+        }
+
+    } else {
+        await weather.getWeatherByCityName(weather.city);
+        view.displayResults(weather.result);
+        document.querySelector("[data-selector='fahrenheit']").addEventListener("click", () => changeWeatherUnits(weather.result, "city"));
+        document.querySelector("[data-selector='celcius']").addEventListener("click", () => changeWeatherUnits(weather.result, "city"));
     }
 }
 
-const renderWeatherApp = async() => {
-    await weather.getWeatherByCityName();
-    view.displayWeather(weather.result);
+const renderWeatherApp = () => {
     view.displayBackgroundImage(weather.result);
 }
 
+/*document.querySelector("[data-selector='input']").addEventListener("click", getCity);*/
 
-document.querySelector("[data-selector='fahrenheit']").addEventListener("click", changeWeatherUnits);
 document.querySelectorAll("[data-selector='myLocation']").forEach(button => button.addEventListener("click", getWeatherByMyLocation));
 document.querySelector("[data-selector='button']").addEventListener("click", changeWeatherByCityName);
 window.addEventListener("DOMContentLoaded", renderWeatherApp);
