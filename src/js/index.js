@@ -22,6 +22,7 @@ const success = async(position) => {
     const longitude = position.coords.longitude;
     const geolocator = new GeoLocator(latitude, longitude);
     await geolocator.getWeatherByLocation();
+    view.displayBackgroundImage(geolocator.result);
     if (geolocator.error) {
         view.alertMessage("Error", "alert-message");
     } else {
@@ -48,12 +49,14 @@ const changeWeatherUnits = (result, type) => {
         document.querySelector("[data-selector='celcius']").addEventListener("click", changeWeatherByCityName);
         document.querySelector("[data-selector='fahrenheit']").addEventListener("click", changeWeatherByCityName);
     }
+
 }
 
 const changeWeatherByCityName = async() => {
     let input = document.querySelector("[data-selector='input']");
     if (!weather.city || input.value) {
         await weather.getWeatherByCityName(input.value);
+        view.displayBackgroundImage(weather.result);
         if (weather.error) {
             view.alertMessage("Please,enter the correct city", "alert-message");
             input.value = "";
@@ -67,6 +70,7 @@ const changeWeatherByCityName = async() => {
     } else {
         await weather.getWeatherByCityName(weather.city);
         view.displayResults(weather.result);
+        view.displayBackgroundImage(weather.result);
         document.querySelector("[data-selector='fahrenheit']").addEventListener("click", () => changeWeatherUnits(weather.result, "city"));
         document.querySelector("[data-selector='celcius']").addEventListener("click", view.changeFahrenheitOnCelcius);
     }

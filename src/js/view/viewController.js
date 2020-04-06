@@ -22,35 +22,29 @@ export default class ViewWeather {
     }
 
     displayBackgroundImage(result) {
-
         if (!result) {
             document.body.style.background = "url('./img/spring.jpg')";
             document.body.style.backgroundPosition = "center";
             document.body.style.backgroundSize = "cover";
             document.body.style.backgroundRepeat = "no-repeat";
-
         } else {
-            if (result.current.temp_c < 0) {
+            if (result.current.temp_c <= 0 || result.current.temp_f <= 0) {
                 document.body.style.background = "url('./img/winter.jpg')";
-
                 document.body.style.backgroundPosition = "center";
                 document.body.style.backgroundSize = "cover";
                 document.body.style.backgroundRepeat = "no-repeat";
-            } else if (result.current.temp_c > 0 && result.current.temp_c < 10) {
+            } else if (result.current.temp_c > 0 && result.current.temp_c <= 10 || result.current.temp_f > 0 && result.current.temp_f <= 10) {
                 document.body.style.background = "url('./img/background.jpg')";
-
                 document.body.style.backgroundPosition = "center";
                 document.body.style.backgroundSize = "cover";
                 document.body.style.backgroundRepeat = "no-repeat";
-            } else if (result.current.temp_c > 10 && result.current.temp_c < 20) {
+            } else if (result.current.temp_c > 10 && result.current.temp_c < 20 || result.current.temp_f > 10 && result.current.temp_f < 20) {
                 document.body.style.background = "url('./img/spring.jpg')";
-
                 document.body.style.backgroundPosition = "center";
                 document.body.style.backgroundSize = "cover";
                 document.body.style.backgroundRepeat = "no-repeat";
-            } else if (result.current.temp_c > 20) {
+            } else if (result.current.temp_c >= 20 || result.current.temp_f >= 20) {
                 document.body.style.background = "url('./img/summer.jpg')";
-
                 document.body.style.backgroundPosition = "center";
                 document.body.style.backgroundSize = "cover";
                 document.body.style.backgroundRepeat = "no-repeat";
