@@ -16,28 +16,7 @@
         <main class="weather row px-2 py-5" data-selector="weather">
             <div class="weather__info col-sm-12 col-md-10 col-lg-7 mt-5 p-3 mx-auto bg-light rounded text-center">
                 <h1 class="weather__heading pt-3"><strong>Weather App</strong></h1>
-                <div class="weather__location pb-3 d-none" data-selector="weather-location">
-                    <span data-selector="name"></span>
-                    <span data-selector="country"></span>
-                    <div class="d-flex flex-row justify-content-center">
-                        <h2 class="text-center pt-2" data-selector="temperature"></h2>
-                        <span class="weather__unit pl-2 pt-2" data-selector="celcius">&#176;C /</span>
-                        <span class="weather__unit pt-3" data-selector="fahrenheit">&#176;F</span>
-                    </div>
-                    <span data-selector="description"></span>
-                    <span><img class="pl-4" data-selector="icon"></span>
-                </div>
-                <div class="d-none flex-row justify-content-between justify-content-md-around px-3 py-2" data-selector="weather-results">
-                    <div class="d-flex flex-column">
-                        <span class="pb-3" data-selector="feelslike"></span>
-                        <span data-selector="pressure"></span>
-                    </div>
-                    <div class="d-flex flex-column">
-                        <span class="pb-3" data-selector="humidity"></span>
-                        <span data-selector="wind"></span>
-                    </div>
-                </div>
-                <div class="text-center py-4" data-selector="time"></div>
+                <div class="d-flex flex-column" data-selector="result"></div>
                 <div class="row">
                     <div class="col-sm-12 pb-4" data-selector="alert"></div>
                 </div>
@@ -50,8 +29,8 @@
                     </div>
                 </div>
                 <div class="col-md-7 mx-auto pt-3 d-flex flex-row">
-                    <button class="btn btn-outline-secondary btn-block" type="button" data-selector="myLocation">My location</button>
-                    <button class="btn btn-outline-secondary" type="button" data-selector="myLocation"><i class="fa fa-map-marker"></i></button>
+                    <button class="btn btn-outline-secondary btn-block" type="button" data-selector="myLocation">My location<i class="fa fa-map-marker float-right pt-1"></i></button>
+
                 </div>
 
                 <div class="row mt-3">

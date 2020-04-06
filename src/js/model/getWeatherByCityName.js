@@ -12,7 +12,6 @@ export default class Weather {
         try {
             this.city = city;
             const res = await axios(`https://api.weatherapi.com/v1/current.json?key=${this.key}&q=${this.city}`);
-            console.log(res.data);
             this.result = res.data;
             console.log(this.result);
             this.error = false;
@@ -24,7 +23,4 @@ export default class Weather {
     clearCity() {
         this.city = "";
     }
-
-
-
 }

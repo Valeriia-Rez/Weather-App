@@ -15,10 +15,6 @@ const request = new Request();
     console.log(view.latitude, view.longitude, view.timeStamp, "lat");
 }*/
 
-
-
-
-
 const error = () => view.alertMessage("Unable to retrieve your location", "alert-message");
 
 const success = async(position) => {
@@ -43,6 +39,7 @@ const getWeatherByMyLocation = () => {
     }
 }
 
+
 const changeWeatherUnits = (result, type) => {
     view.displayFahrenheit(result);
     if (type === "location") {
@@ -52,23 +49,25 @@ const changeWeatherUnits = (result, type) => {
         document.querySelector("[data-selector='celcius']").addEventListener("click", changeWeatherByCityName);
         document.querySelector("[data-selector='fahrenheit']").addEventListener("click", changeWeatherByCityName);
     }
-
 }
 
 const changeWeatherByCityName = async() => {
+
     let input = document.querySelector("[data-selector='input']");
     if (!weather.city || input.value) {
         await weather.getWeatherByCityName(input.value);
-        console.log(weather);
+
         if (weather.error) {
-            console.log(weather.error);
             view.alertMessage("Please,enter the correct city", "alert-message");
             input.value = "";
             weather.clearCity();
         } else {
+
             view.displayResults(weather.result);
+
             document.querySelector("[data-selector='fahrenheit']").addEventListener("click", () => changeWeatherUnits(weather.result, "city"));
-            document.querySelector("[data-selector='celcius']").addEventListener("click", () => changeWeatherUnits(weather.result, "city"));
+            document.querySelector("[data-selector='celcius']").addEventListener("click", view.changeFahrenheitOnCelcius);
+
             input.value = "";
         }
 
@@ -76,7 +75,7 @@ const changeWeatherByCityName = async() => {
         await weather.getWeatherByCityName(weather.city);
         view.displayResults(weather.result);
         document.querySelector("[data-selector='fahrenheit']").addEventListener("click", () => changeWeatherUnits(weather.result, "city"));
-        document.querySelector("[data-selector='celcius']").addEventListener("click", () => changeWeatherUnits(weather.result, "city"));
+        document.querySelector("[data-selector='celcius']").addEventListener("click", view.changeFahrenheitOnCelcius);
     }
 }
 
