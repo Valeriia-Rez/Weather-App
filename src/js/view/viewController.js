@@ -5,7 +5,6 @@ export default class ViewWeather {
         this.timeStamp;
         this.celcius;
         this.fahrenheit;
-
     }
 
     getResponseCity(result) {
@@ -20,31 +19,46 @@ export default class ViewWeather {
         const feelslike = document.querySelector("[data-selector='feelslike']");
         feelslike.innerHTML = `<strong>Feels Like:</strong> ${result.current.feelslike_f} &#176;F`;
         this.changeCelciusOnFahrenheit();
-
     }
 
-
-
     displayBackgroundImage(result) {
-        const div = document.querySelector("body");
-        div.style.backgroundSize = "cover";
-        div.style.backgroundPosition = "top";
-        div.style.backgroundRepeat = "no-repeat";
+
         if (!result) {
-            div.style.background = "url('./img/spring.jpg')";
-            return
+            document.body.style.background = "url('./img/spring.jpg')";
+            document.body.style.backgroundPosition = "center";
+            document.body.style.backgroundSize = "cover";
+            document.body.style.backgroundRepeat = "no-repeat";
+
         } else {
             if (result.current.temp_c < 0) {
-                div.style.background = "url('./img/winter.jpg')";
+                document.body.style.background = "url('./img/winter.jpg')";
+
+                document.body.style.backgroundPosition = "center";
+                document.body.style.backgroundSize = "cover";
+                document.body.style.backgroundRepeat = "no-repeat";
             } else if (result.current.temp_c > 0 && result.current.temp_c < 10) {
-                div.style.background = "url('./img/background.jpg')";
+                document.body.style.background = "url('./img/background.jpg')";
+
+                document.body.style.backgroundPosition = "center";
+                document.body.style.backgroundSize = "cover";
+                document.body.style.backgroundRepeat = "no-repeat";
             } else if (result.current.temp_c > 10 && result.current.temp_c < 20) {
-                div.style.background = "url('./img/spring.jpg')";
+                document.body.style.background = "url('./img/spring.jpg')";
+
+                document.body.style.backgroundPosition = "center";
+                document.body.style.backgroundSize = "cover";
+                document.body.style.backgroundRepeat = "no-repeat";
             } else if (result.current.temp_c > 20) {
-                div.style.background = "url('./img/summer.jpg')";
+                document.body.style.background = "url('./img/summer.jpg')";
+
+                document.body.style.backgroundPosition = "center";
+                document.body.style.backgroundSize = "cover";
+                document.body.style.backgroundRepeat = "no-repeat";
             }
         }
     }
+
+
 
     alertMessage(message, className) {
         this.clearAlert();
@@ -71,10 +85,13 @@ export default class ViewWeather {
                 <div class="weather__location pb-3">
                     <span>${result.location.name}</span>
                     <span>${result.location.country}</span>
-                    <div class="d-flex flex-row justify-content-center">
+                    <div class="d-flex flex-row justify-content-center align-items-center">
                         <h2 class="text-center pt-2" data-selector="temperature"><strong>${result.current.temp_c}</strong></h2>
-                        <span class="weather__unit pl-2 pt-2 active" data-selector="celcius">&#176;C /</span>
+                      
+                        <span class="weather__unit px-2 pt-2 active" data-selector="celcius">&#176;C</span>
+                        <span class="px-1">/</span>
                         <span class="weather__unit pt-3" data-selector="fahrenheit">&#176;F</span>
+                        
                     </div>
                     <span><strong>${result.current.condition.text}</strong></span>
                     <span><img src="${result.current.condition.icon}" class="pl-4"></span>
@@ -94,21 +111,17 @@ export default class ViewWeather {
 
         const resultWrapper = document.querySelector("[data-selector='result']");
         resultWrapper.innerHTML = html;
-
     }
 
     changeCelciusOnFahrenheit() {
         this.celcius = document.querySelector("[data-selector='celcius']");
         this.fahrenheit = document.querySelector("[data-selector='fahrenheit']");
-        console.log(this.celcius, this.fahrenheit);
         this.toggleClassess(this.celcius, this.fahrenheit);
-
     }
 
     changeFahrenheitOnCelcius() {
         this.celcius = document.querySelector("[data-selector='celcius']");
         this.fahrenheit = document.querySelector("[data-selector='fahrenheit']");
-        console.log(this.celcius, this.fahrenheit);
         this.toggleClassess(this.fahrenheit, this.celcius);
     }
 

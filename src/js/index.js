@@ -39,7 +39,6 @@ const getWeatherByMyLocation = () => {
     }
 }
 
-
 const changeWeatherUnits = (result, type) => {
     view.displayFahrenheit(result);
     if (type === "location") {
@@ -52,25 +51,19 @@ const changeWeatherUnits = (result, type) => {
 }
 
 const changeWeatherByCityName = async() => {
-
     let input = document.querySelector("[data-selector='input']");
     if (!weather.city || input.value) {
         await weather.getWeatherByCityName(input.value);
-
         if (weather.error) {
             view.alertMessage("Please,enter the correct city", "alert-message");
             input.value = "";
             weather.clearCity();
         } else {
-
             view.displayResults(weather.result);
-
             document.querySelector("[data-selector='fahrenheit']").addEventListener("click", () => changeWeatherUnits(weather.result, "city"));
             document.querySelector("[data-selector='celcius']").addEventListener("click", view.changeFahrenheitOnCelcius);
-
             input.value = "";
         }
-
     } else {
         await weather.getWeatherByCityName(weather.city);
         view.displayResults(weather.result);
