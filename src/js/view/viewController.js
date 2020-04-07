@@ -1,17 +1,11 @@
 export default class ViewWeather {
     constructor() {
-        this.latitude;
-        this.longitude;
-        this.timeStamp;
+
         this.celcius;
         this.fahrenheit;
     }
 
-    getResponseCity(result) {
-        this.latitude = result.location.lat;
-        this.longitude = result.location.lon;
-        this.timeStamp = new Date().getTime() / 1000 + new Date().getTimezoneOffset() * 60;
-    }
+
 
     displayFahrenheit(result) {
         const temperature = document.querySelector("[data-selector='temperature']");

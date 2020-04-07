@@ -23,6 +23,7 @@
                 <div class="input-group">
                     <div class="col-md-7 mx-auto d-flex flex-row">
                         <input type="text" class="form-control border-secondary" data-selector="input" placeholder="Enter a city">
+                        <div id="output"></div>
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary" type="button" data-selector="button"><i class="fas fa-search"></i></button>
                         </div>
@@ -46,6 +47,15 @@
 
     </div>
 
+    <script>
+        function init() {
+            const input = document.querySelector("[data-selector='input']");
+            const autocomplete = new google.maps.places.Autocomplete(input);
+        }
+    </script>
+
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAf-DvOHPWpqrx_382gHT5ue05lCgdgiiE
+    &libraries=places&callback=init"></script>
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

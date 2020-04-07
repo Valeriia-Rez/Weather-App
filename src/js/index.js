@@ -2,18 +2,10 @@ import "../scss/main.scss";
 import "regenerator-runtime/runtime";
 import Weather from "./model/getWeatherByCityName";
 import GeoLocator from "./model/getWeatherByLocation";
-import Request from "./model/getRequestedCity";
 import ViewWeather from "./view/viewController";
 
 const weather = new Weather();
 const view = new ViewWeather();
-const request = new Request();
-
-/*const getCity = async() => {
-    view.getResponseCity(weather.result);
-    await request.getRequestedCity(view.latitude, view.longitude, view.timeStamp);
-    console.log(view.latitude, view.longitude, view.timeStamp, "lat");
-}*/
 
 const error = () => view.alertMessage("Unable to retrieve your location", "alert-message");
 
@@ -56,6 +48,7 @@ const changeWeatherByCityName = async() => {
     let input = document.querySelector("[data-selector='input']");
     if (!weather.city || input.value) {
         await weather.getWeatherByCityName(input.value);
+        init();
         view.displayBackgroundImage(weather.result);
         if (weather.error) {
             view.alertMessage("Please,enter the correct city", "alert-message");
@@ -80,7 +73,13 @@ const renderWeatherApp = () => {
     view.displayBackgroundImage(weather.result);
 }
 
-/*document.querySelector("[data-selector='input']").addEventListener("click", getCity);*/
+
+
+
+
+
+
+document.querySelector("[data-selector='input']").addEventListener("click", init);
 
 document.querySelectorAll("[data-selector='myLocation']").forEach(button => button.addEventListener("click", getWeatherByMyLocation));
 document.querySelector("[data-selector='button']").addEventListener("click", changeWeatherByCityName);
