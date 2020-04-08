@@ -1,11 +1,27 @@
 export default class ViewWeather {
     constructor() {
-
         this.celcius;
         this.fahrenheit;
     }
 
+    changeCelciusOnFahrenheit() {
+        this.celcius = document.querySelector("[data-selector='celcius']");
+        this.fahrenheit = document.querySelector("[data-selector='fahrenheit']");
+        this.toggleClassess(this.celcius, this.fahrenheit);
+    }
 
+    changeFahrenheitOnCelcius() {
+        this.celcius = document.querySelector("[data-selector='celcius']");
+        this.fahrenheit = document.querySelector("[data-selector='fahrenheit']");
+        this.toggleClassess(this.fahrenheit, this.celcius);
+    }
+
+    toggleClassess(first, second) {
+        if (first.classList.contains('active')) {
+            first.classList.remove('active');
+            second.classList.add('active');
+        }
+    }
 
     displayFahrenheit(result) {
         const temperature = document.querySelector("[data-selector='temperature']");
@@ -46,8 +62,6 @@ export default class ViewWeather {
         }
     }
 
-
-
     alertMessage(message, className) {
         this.clearAlert();
         const div = document.createElement('div');
@@ -70,7 +84,7 @@ export default class ViewWeather {
 
     displayResults(result) {
         const html = `
-                <div class="weather__location pb-3">
+                <div class="weather__location">
                     <span>${result.location.name}</span>
                     <span>${result.location.country}</span>
                     <div class="d-flex flex-row justify-content-center align-items-center">
@@ -94,29 +108,10 @@ export default class ViewWeather {
                         <span><strong>Wind:</strong> ${result.current.wind_kph} kph</span>
                     </div>
                 </div>
-                <div class="text-center py-4"><strong>${result.location.localtime}</strong></div>
+                <div class="text-center py-3"><strong>${result.location.localtime}</strong></div>
                `;
 
         const resultWrapper = document.querySelector("[data-selector='result']");
         resultWrapper.innerHTML = html;
-    }
-
-    changeCelciusOnFahrenheit() {
-        this.celcius = document.querySelector("[data-selector='celcius']");
-        this.fahrenheit = document.querySelector("[data-selector='fahrenheit']");
-        this.toggleClassess(this.celcius, this.fahrenheit);
-    }
-
-    changeFahrenheitOnCelcius() {
-        this.celcius = document.querySelector("[data-selector='celcius']");
-        this.fahrenheit = document.querySelector("[data-selector='fahrenheit']");
-        this.toggleClassess(this.fahrenheit, this.celcius);
-    }
-
-    toggleClassess(first, second) {
-        if (first.classList.contains('active')) {
-            first.classList.remove('active');
-            second.classList.add('active');
-        }
     }
 }

@@ -41,14 +41,12 @@ const changeWeatherUnits = (result, type) => {
         document.querySelector("[data-selector='celcius']").addEventListener("click", changeWeatherByCityName);
         document.querySelector("[data-selector='fahrenheit']").addEventListener("click", changeWeatherByCityName);
     }
-
 }
 
 const changeWeatherByCityName = async() => {
-    let input = document.querySelector("[data-selector='input']");
+    const input = document.querySelector("[data-selector='input']");
     if (!weather.city || input.value) {
         await weather.getWeatherByCityName(input.value);
-        init();
         view.displayBackgroundImage(weather.result);
         if (weather.error) {
             view.alertMessage("Please,enter the correct city", "alert-message");
@@ -56,8 +54,9 @@ const changeWeatherByCityName = async() => {
             weather.clearCity();
         } else {
             view.displayResults(weather.result);
+            view.changeFahrenheitOnCelcius();
             document.querySelector("[data-selector='fahrenheit']").addEventListener("click", () => changeWeatherUnits(weather.result, "city"));
-            document.querySelector("[data-selector='celcius']").addEventListener("click", view.changeFahrenheitOnCelcius);
+            document.querySelector("[data-selector='celcius']").addEventListener("click", () => changeWeatherUnits(weather.result, "city"));
             input.value = "";
         }
     } else {
@@ -65,7 +64,7 @@ const changeWeatherByCityName = async() => {
         view.displayResults(weather.result);
         view.displayBackgroundImage(weather.result);
         document.querySelector("[data-selector='fahrenheit']").addEventListener("click", () => changeWeatherUnits(weather.result, "city"));
-        document.querySelector("[data-selector='celcius']").addEventListener("click", view.changeFahrenheitOnCelcius);
+        document.querySelector("[data-selector='celcius']").addEventListener("click", () => changeWeatherUnits(weather.result, "city"));
     }
 }
 
@@ -73,15 +72,7 @@ const renderWeatherApp = () => {
     view.displayBackgroundImage(weather.result);
 }
 
-
-
-
-
-
-
-document.querySelector("[data-selector='input']").addEventListener("click", init);
-
-document.querySelectorAll("[data-selector='myLocation']").forEach(button => button.addEventListener("click", getWeatherByMyLocation));
+document.querySelectorAll("[data-selector='my-location']").forEach(button => button.addEventListener("click", getWeatherByMyLocation));
 document.querySelector("[data-selector='button']").addEventListener("click", changeWeatherByCityName);
 window.addEventListener("DOMContentLoaded", renderWeatherApp);
 

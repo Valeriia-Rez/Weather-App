@@ -12,13 +12,13 @@
 
 <body>
 
-    <div class="container">
-        <main class="weather row px-2 py-5" data-selector="weather">
-            <div class="weather__info col-sm-12 col-md-10 col-lg-7 mt-4 px-3 pb-3 mx-auto bg-light rounded text-center">
+    <div class="container pt-4">
+        <main class="weather row px-4" data-selector="weather">
+            <div class="weather__info col-sm-12 col-md-10 col-lg-7 mx-auto bg-light rounded text-center">
                 <h1 class="weather__heading pt-3"><strong>Weather App</strong></h1>
                 <div class="d-flex flex-column" data-selector="result"></div>
-                <div class="row">
-                    <div class="col-sm-12 pb-4" data-selector="alert"></div>
+                <div class="row mb-2">
+                    <div class="col-sm-12" data-selector="alert"></div>
                 </div>
                 <div class="input-group">
                     <div class="col-md-7 mx-auto d-flex flex-row">
@@ -30,11 +30,9 @@
                     </div>
                 </div>
                 <div class="col-md-7 mx-auto pt-3 d-flex flex-row">
-                    <button class="btn btn-outline-secondary btn-block" type="button" data-selector="myLocation">My location<i class="fa fa-map-marker float-right pt-1"></i></button>
-
+                    <button class="btn btn-outline-secondary btn-block" type="button" data-selector="my-location">My location<i class="fa fa-map-marker float-right pt-1"></i></button>
                 </div>
-
-                <div class="row mt-3">
+                <div class="row py-1">
                     <div class="col-sm-12 text-center">
                         <small>Developed with vanilla JS</small>
                         <br>

@@ -12,7 +12,6 @@ export default class GeoLocator {
         try {
             const res = await axios(`https://api.weatherapi.com/v1/current.json?key=${this.key}&q=${this.latitude}&q=${this.longitude}`);
             this.result = res.data;
-            console.log(this.result);
             this.error = false;
         } catch (error) {
             this.error = true;
